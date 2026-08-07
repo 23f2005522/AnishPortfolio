@@ -3008,6 +3008,11 @@ input, select, textarea {
 			background-size: cover;
 			border-radius: 0;
 			display: block;
+			-ms-flex: 0 0 25em;
+			flex: 0 0 25em;
+			max-width: 25em;
+			min-width: 0;
+			overflow: hidden;
 			position: relative;
 			width: 25em;
 		}
@@ -3015,6 +3020,17 @@ input, select, textarea {
 			.spotlights > section > .image img {
 				border-radius: 0;
 				display: block;
+			}
+
+			/* Keep default thumbs out of layout so wide screenshots can't spill over text */
+			.spotlights > section > .image > img:not(.hover-media) {
+				height: 1px;
+				left: 0;
+				opacity: 0;
+				pointer-events: none;
+				position: absolute;
+				top: 0;
+				width: 1px;
 			}
 
 			.spotlights > section > .image:before {
@@ -3035,10 +3051,6 @@ input, select, textarea {
 				pointer-events: none;
 			}
 
-			.spotlights > section > .image.has-hover-media {
-				overflow: hidden;
-			}
-
 			.spotlights > section > .image .hover-media {
 				-moz-transition: opacity 0.45s ease;
 				-webkit-transition: opacity 0.45s ease;
@@ -3047,6 +3059,8 @@ input, select, textarea {
 				display: block !important;
 				height: 100%;
 				left: 0;
+				max-height: 100%;
+				max-width: 100%;
 				object-fit: cover;
 				opacity: 0;
 				pointer-events: none;
@@ -3128,8 +3142,11 @@ input, select, textarea {
 			}
 
 				.spotlights > section > .image {
-					width: 100%;
+					-ms-flex: none;
+					flex: none;
 					height: 50vh;
+					max-width: none;
+					width: 100%;
 				}
 
 				.spotlights > section > .content {
