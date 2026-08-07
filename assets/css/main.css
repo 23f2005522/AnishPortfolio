@@ -3031,6 +3031,34 @@ input, select, textarea {
 				position: absolute;
 				top: 0;
 				width: 100%;
+				z-index: 3;
+				pointer-events: none;
+			}
+
+			.spotlights > section > .image.has-hover-media {
+				overflow: hidden;
+			}
+
+			.spotlights > section > .image .hover-media {
+				-moz-transition: opacity 0.45s ease;
+				-webkit-transition: opacity 0.45s ease;
+				-ms-transition: opacity 0.45s ease;
+				transition: opacity 0.45s ease;
+				display: block !important;
+				height: 100%;
+				left: 0;
+				object-fit: cover;
+				opacity: 0;
+				pointer-events: none;
+				position: absolute;
+				top: 0;
+				width: 100%;
+				z-index: 4;
+			}
+
+			.spotlights > section > .image:hover .hover-media,
+			.spotlights > section > .image:focus-within .hover-media {
+				opacity: 1;
 			}
 
 		.spotlights > section > .content {

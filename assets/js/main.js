@@ -152,7 +152,7 @@
 
 				var	$this = $(this),
 					$image = $this.find('.image'),
-					$img = $image.find('img'),
+					$img = $image.find('img').not('.hover-media').first(),
 					x;
 
 				// Assign image.
@@ -162,8 +162,25 @@
 					if (x = $img.data('position'))
 						$image.css('background-position', x);
 
-				// Hide <img>.
+				// Hide default <img> only (keep hover media).
 					$img.hide();
+
+				// Play / pause hover video.
+					$image
+						.on('mouseenter focusin', function() {
+							var video = $(this).find('video.hover-media').get(0);
+							if (video) {
+								video.currentTime = 0;
+								video.play().catch(function() {});
+							}
+						})
+						.on('mouseleave focusout', function() {
+							var video = $(this).find('video.hover-media').get(0);
+							if (video) {
+								video.pause();
+								video.currentTime = 0;
+							}
+						});
 
 			});
 
